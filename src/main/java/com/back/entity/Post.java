@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class Post extends BaseIdAndTime {
+
     @ManyToOne(fetch = LAZY)
     private Member author;
     private String title;
@@ -35,6 +36,8 @@ public class Post extends BaseIdAndTime {
         PostComment postComment = new PostComment(this, author, content);
 
         comments.add(postComment);
+
+        author.increaseActivityScore(1);
 
         return postComment;
     }
