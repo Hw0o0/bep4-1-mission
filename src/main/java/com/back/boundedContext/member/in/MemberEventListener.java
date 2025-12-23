@@ -1,11 +1,11 @@
 
-package com.back.boundedContext.member.eventListener;
+package com.back.boundedContext.member.in;
 
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 import static org.springframework.transaction.event.TransactionPhase.AFTER_COMMIT;
 
-import com.back.boundedContext.member.entity.Member;
-import com.back.boundedContext.member.service.MemberService;
+import com.back.boundedContext.member.domain.Member;
+import com.back.boundedContext.member.app.MemberService;
 import com.back.shared.post.event.PostCommentCreatedEvent;
 import com.back.shared.post.event.PostCreatedEvent;
 import lombok.RequiredArgsConstructor;
