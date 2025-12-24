@@ -8,10 +8,12 @@ import com.back.global.jpa.entity.BaseIdAndTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "POST_POST_COMMENT")
 @NoArgsConstructor
 @Getter
 public class PostComment extends BaseIdAndTime {
