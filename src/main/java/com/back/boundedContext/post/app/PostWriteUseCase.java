@@ -1,5 +1,6 @@
 package com.back.boundedContext.post.app;
 
+import com.back.boundedContext.member.app.MemberFacade;
 import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.post.domain.Post;
 import com.back.boundedContext.post.out.PostRepository;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PostWriteUseCase {
+
     private final PostRepository postRepository;
     private final EventPublisher eventPublisher;
+    private final MemberFacade memberFacade;
 
     public RsData<Post> write(Member author, String title, String content) {
         Post post = postRepository.save(new Post(author, title, content));
@@ -25,6 +28,12 @@ public class PostWriteUseCase {
             )
         );
 
-        return new RsData<>("201-1", "%d번 글이 생성되었습니다.".formatted(post.getId()), post);
+        String randomSecureTip = memberFacade.getRandomSecureTip();
+
+        return new RsData<>(
+            "201-1",
+            "%d번 글이 생성되었습니다."
+                .formatted(post.getId(), randomSecureTip), post);
+
     }
 }
