@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class Member extends SourceMember {
+
     public Member(String username, String password, String nickname) {
         super(username, password, nickname);
     }
@@ -22,9 +23,7 @@ public class Member extends SourceMember {
 
         setActivityScore(getActivityScore() + amount);
 
-        publishEvent(
-            new MemberModifiedEvent(new MemberDto(this))
-        );
+        publishEvent(new MemberModifiedEvent(new MemberDto(this)));
 
         return getActivityScore();
     }
