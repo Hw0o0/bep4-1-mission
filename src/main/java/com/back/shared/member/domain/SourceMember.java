@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor
-public abstract class SourceMember extends com.back.shared.member.domain.BaseMember {
+public abstract class SourceMember extends BaseMember {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
@@ -27,6 +27,6 @@ public abstract class SourceMember extends com.back.shared.member.domain.BaseMem
     private LocalDateTime modifyDate;
 
     public SourceMember(String username, String password, String nickname) {
-        super(username, password, nickname);
+        super(username, password, nickname,0);
     }
 }
