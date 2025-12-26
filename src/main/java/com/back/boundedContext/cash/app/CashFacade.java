@@ -5,6 +5,7 @@ import com.back.boundedContext.cash.domain.Wallet;
 import com.back.boundedContext.cash.out.CashMemberRepository;
 import com.back.boundedContext.cash.out.WalletRepository;
 import com.back.shared.member.dto.MemberDto;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +35,15 @@ public class CashFacade {
         Wallet wallet = new Wallet(holder);
 
         return walletRepository.save(wallet);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<CashMember> findMemberByUsername(String username) {
+        return cashMemberRepository.findByUsername(username);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Wallet> findWalletByHolder(CashMember holder) {
+        return walletRepository.findByHolder(holder);
     }
 }
