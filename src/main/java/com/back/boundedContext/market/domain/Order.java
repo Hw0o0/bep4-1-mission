@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 public class Order extends BaseIdAndTime {
     @ManyToOne(fetch = LAZY)
     private MarketMember buyer;
+    private LocalDateTime cancelDate;
     private LocalDateTime requestPaymentDate;
     private LocalDateTime paymentDate;
     private long price;
@@ -58,6 +59,15 @@ public class Order extends BaseIdAndTime {
     public void completePayment() {
         paymentDate = LocalDateTime.now();
     }
+
+    public boolean isCanceled() {
+        return cancelDate != null;
+    }
+
+    public boolean isPaymentInProgress() {
+        return requestPaymentDate != null && paymentDate == null && cancelDate == null;
+    }
+
 
     public boolean isPaid() {
         return paymentDate != null;
