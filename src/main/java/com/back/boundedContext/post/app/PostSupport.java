@@ -4,10 +4,10 @@ import com.back.boundedContext.post.domain.Post;
 import com.back.boundedContext.post.domain.PostMember;
 import com.back.boundedContext.post.out.PostMemberRepository;
 import com.back.boundedContext.post.out.PostRepository;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -25,5 +25,14 @@ public class PostSupport {
 
     public Optional<PostMember> findMemberByUsername(String username) {
         return postMemberRepository.findByUsername(username);
+    }
+
+
+    public List<Post> findAll() {
+        return postRepository.findAll();
+    }
+
+    public List<Post> findByOrderByIdDesc() {
+        return postRepository.findByOrderByIdDesc();
     }
 }
