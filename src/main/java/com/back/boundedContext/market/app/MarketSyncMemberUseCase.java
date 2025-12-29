@@ -16,8 +16,10 @@ public class MarketSyncMemberUseCase {
     private final EventPublisher eventPublisher;
 
     public MarketMember syncMember(MemberDto member) {
+        //존재 여부 확인
         boolean isNew = !marketMemberRepository.existsById(member.getId());
 
+        //존재 있다면 수정만...
         MarketMember _member = marketMemberRepository.save(
             new MarketMember(
                 member.getId(),
