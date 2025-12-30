@@ -5,6 +5,7 @@ import static jakarta.persistence.CascadeType.REMOVE;
 
 import com.back.global.jpa.entity.BaseEntity;
 import com.back.global.jpa.entity.BaseManualIdAndTime;
+import com.back.shared.cash.dto.WalletDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
@@ -33,6 +34,18 @@ public class Wallet extends BaseManualIdAndTime {
         super(holder.getId());
         this.holder = holder;
     }
+
+    public WalletDto toDto() {
+        return new WalletDto(
+            getId(),
+            getCreateDate(),
+            getModifyDate(),
+            holder.getId(),
+            holder.getUsername(),
+            balance
+        );
+    }
+
 
     public boolean hasBalance() {
         return balance > 0;

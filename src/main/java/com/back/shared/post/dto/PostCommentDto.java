@@ -1,14 +1,13 @@
 package com.back.shared.post.dto;
 
-import com.back.boundedContext.post.domain.PostComment;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
 public class PostCommentDto {
+
     private final int id;
     private final LocalDateTime createDate;
     private final LocalDateTime modifyDate;
@@ -16,16 +15,4 @@ public class PostCommentDto {
     private final int authorId;
     private final String authorName;
     private final String content;
-
-    public PostCommentDto(PostComment comment) {
-        this(
-            comment.getPost().getId(),
-            comment.getCreateDate(),
-            comment.getModifyDate(),
-            comment.getId(),
-            comment.getAuthor().getId(),
-            comment.getAuthor().getNickname(),
-            comment.getContent()
-        );
-    }
 }
