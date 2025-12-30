@@ -1,12 +1,13 @@
 package com.back.shared.market.dto;
 
+import com.back.standard.modelType.CanGetModelTypeCode;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class OrderDto {
+public class OrderDto implements CanGetModelTypeCode {
 
     private final int id;
     private final LocalDateTime createDate;
@@ -17,4 +18,9 @@ public class OrderDto {
     private final long salePrice;
     private final LocalDateTime requestPaymentDate;
     private final LocalDateTime paymentDate;
+
+    @Override
+    public String getModelTypeCode() {
+        return "Order";
+    }
 }

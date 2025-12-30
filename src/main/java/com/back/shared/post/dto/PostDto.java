@@ -1,5 +1,6 @@
 package com.back.shared.post.dto;
 
+import com.back.standard.modelType.CanGetModelTypeCode;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +8,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class PostDto {
+public class PostDto implements CanGetModelTypeCode {
 
     private final int id;
     private final LocalDateTime createDate;
@@ -16,4 +17,9 @@ public class PostDto {
     private final String authorName;
     private final String title;
     private final String content;
+
+    @Override
+    public String getModelTypeCode() {
+        return "Post";
+    }
 }
